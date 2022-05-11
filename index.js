@@ -276,7 +276,8 @@ function getCityForWeather() {
     city.addEventListener("click", async (event) => {
       try {
         const weather1 = await fetch(
-          `http://api.weatherstack.com/current?access_key=c6a38e03037a0aedff539da5dc7f6827&query=${event.target.innerText}`
+          `https://api.weatherapi.com/v1/current.json?key=039d505d574143e89f6215143221105&q=${event.target.innerText}&aqi=no`
+          // `http://api.weatherstack.com/current?access_key=c6a38e03037a0aedff539da5dc7f6827&query=${event.target.innerText}`
         );
         const data = await weather1.json();
         const allData = data.current;
