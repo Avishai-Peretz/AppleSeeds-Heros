@@ -1,10 +1,37 @@
 AppleSeeds Heros - One day group assignment   11/05/2022
 
 
+Fetch – like yesterday's StarWars – 2 API requests/ saving the data into Object
+The second fetch stage will be via loop. The loop will also render the "person" divs – IF SUCCESSFUL.
+Each person object will be kept within "person array", and will contain the DOM element.
+For "search" or "filter" – we can empty the DOM from all the person divs, map or filter the persons array and re-render only the relevant DOM element from each person filtered.
+
+Delete – remove the DOM element and remove from the persons array
+Edit – re-render the person div – replacing the <p> with <input> (with the original data as value)
+Whether – looping over all the people, listing all the citys. Then fetching from whether API.
+Updating every time the user edit a city
+
+Language 
+Local Storage
+
+Tasks:
+Fetching all persons
+Data structure, folder structure, HTML structure
+Functionality: filter, sort, delete, edit
+Git repo, readme,
+CSS
+Whether
+
+
+Function Fetch1 
+DATA Categorization: we want to create an array of person-objects:
 
 
-Website Building:
-Weekend assignment
+
+
+
+
+<!-- Website Building:
 JS – Bootcamp capsules
 Instructions
 We will create a table of data we get from the following
@@ -53,4 +80,4 @@ The user has the ability to sort the data by the following:
 4. Age
 5. City
 6. Gender
-7. Hobby
+7. Hobby -->
