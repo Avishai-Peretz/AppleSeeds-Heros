@@ -32,23 +32,24 @@ async function initialize() {
   originalStudents = [...allStudents];
 //   console.log(allStudents);
   deleteSpinner();
-  createTable(allStudents);
-  addEventToRestart();
   addEventToSearch();
+  addEventToRestart();
+  createTable(allStudents);
 }
 
 initialize();
 
 function addEventToSearch() {
-    const searchInput = document.querySelector("#mainInput");
-    searchInput.addEventListener("search", searchAll);
+  const searchInput = document.querySelector("#mainInput");
+  searchInput.addEventListener("search", searchAll);
+  return allStudents
 }
 
 function searchAll() {
     const searchInput = document.querySelector("#mainInput");
     const input = searchInput.value.toLowerCase();
     const select = document.querySelector("#mainSelect");
-    const newArr = allStudents.filter((student)=> {
+    const newArr = originalStudents.filter((student)=> {
         if(select.value === "everything") {
             for(let property in student) {
                 if(student[property].toString().includes(input)) {
@@ -77,8 +78,10 @@ function searchAll() {
             }
         } 
         return false;
-    })
-    createTable(newArr);
+    })    
+  createTable(newArr);
+  allStudents = newArr;
+  return allStudents
 }
 
 function addEventToRestart() {
