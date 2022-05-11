@@ -1,4 +1,5 @@
 let allStudents = [];
+let originalStudents = [];
 
 async function initialize() {
   const promMordi = fetch(
@@ -28,14 +29,24 @@ async function initialize() {
   }
   const arrJasonsResults = await Promise.all(arrJasons);
   allStudents = [...arrJasonsResults];
+  originalStudents = [...allStudents];
   console.log(allStudents);
   deleteSpinner();
-  createTable();
+  createTable(allStudents);
+  addEventToRestart();
 }
 
 initialize();
 
-function createTable() {
+function addEventToRestart() {
+    const restart = document.querySelector("#resetBTN");
+    restart.addEventListener("click", ()=> {
+        createTable(originalStudents);
+        allStudents = [...originalStudents];
+    })
+}
+
+function createTable(students) {
   const tableContainer = document.querySelector(".table-container");
   tableContainer.innerHTML = "";
   let output = `
@@ -55,7 +66,7 @@ function createTable() {
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>`;
-  for (let student of allStudents) {
+  for (let student of students) {
     output += `
         <tr id=row${student.id} data-number=${student.id}>
             <td>${student.id}</td>
