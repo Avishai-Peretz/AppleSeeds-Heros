@@ -30,13 +30,33 @@ async function initialize() {
   const arrJasonsResults = await Promise.all(arrJasons);
   allStudents = [...arrJasonsResults];
   originalStudents = [...allStudents];
-  console.log(allStudents);
+//   console.log(allStudents);
   deleteSpinner();
   createTable(allStudents);
   addEventToRestart();
+  addEventToSearch();
 }
 
 initialize();
+const searchInput = document.querySelector("#mainInput");
+function addEventToSearch() {
+    searchInput.addEventListener("search", searchAll);
+}
+
+function searchAll() {
+    // console.log(searchInput.value);
+    const searchInput = document.querySelector("#mainInput");
+    console.log(11);
+    const newArr = allStudents.filter((student)=> {
+        for(let property in student) {
+            if(student[property].toString().includes(searchInput.value)) {
+                return true;
+            }
+        }
+        return false;
+    })
+    createTable(newArr);
+}
 
 function addEventToRestart() {
     const restart = document.querySelector("#resetBTN");
@@ -91,43 +111,43 @@ function createTable(students) {
   const ageButton = document.querySelector("#ageSort");
   ageButton.addEventListener("click", function () {
     sortTable("age");
-    createTable();
+    createTable(allStudents);
   });
   const capsuleButton = document.querySelector("#capsuleSort");
   capsuleButton.addEventListener("click", function () {
     sortTable("capsule");
-    createTable();
+    createTable(allStudents);
   });
 
   const idButton = document.querySelector("#idSort");
   idButton.addEventListener("click", function () {
     sortTable("id");
-    createTable();
+    createTable(allStudents);
   });
   const genderButton = document.querySelector("#genderSort");
   genderButton.addEventListener("click", function () {
     sortNames("gender");
-    createTable();
+    createTable(allStudents);
   });
   const firstButton = document.querySelector("#firstSort");
   firstButton.addEventListener("click", function () {
     sortNames("firstName");
-    createTable();
+    createTable(allStudents);
   });
   const lastButton = document.querySelector("#lastSort");
   lastButton.addEventListener("click", function () {
     sortNames("lastName");
-    createTable();
+    createTable(allStudents);
   });
   const hobbyButton = document.querySelector("#hobbySort");
   hobbyButton.addEventListener("click", function () {
     sortNames("hobby");
-    createTable();
+    createTable(allStudents);
   });
   const cityButton = document.querySelector("#citySort");
   cityButton.addEventListener("click", function () {
     sortNames("city");
-    createTable();
+    createTable(allStudents);
   });
 }
 
@@ -222,3 +242,4 @@ function sortNames(field) {
     }
   });
 }
+
