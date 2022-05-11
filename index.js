@@ -284,7 +284,7 @@ function getCityForWeather() {
         const currentPlace = data.location;
         console.log(currentWeather.temp_c);
         alert(
-          `the weather in ${event.target.innerText} ${currentPlace.country} is ${currentWeather.temp_c} degrees`
+          `the weather in ${event.target.innerText} is ${currentWeather.temp_c} degrees`
         );
       } catch (e) {
         alert(
