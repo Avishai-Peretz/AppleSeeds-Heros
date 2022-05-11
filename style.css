@@ -2,16 +2,51 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+
 }
 
 body{
     background-color: grey;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+
+}
+header {
+    width: 100vw;
+    position: fixed;
 }
 header nav {
     height: 80px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;   
-    
+    justify-content: space-evenly;
+    align-items: center; 
+    border-bottom: #fff solid 1px;     
+}
+
+#mainInput {
+    width: 30rem;
+    height: 2rem;
+    border-radius: 0.5rem ;
+}
+
+#mainSelect {
+    width: fit-content;
+    height: 2rem;
+    border-radius: 0.5rem ;
+}
+#mainSelect option {
+    padding: 0.2rem 0 ;
+}
+
+#resetBTN {
+    width: 5rem;
+    height: 2rem;
+    border-radius: 0.5rem ;
+}
+
+#resetBTN:hover {
+    background-color: #333;
+    color: #fff;
 }
