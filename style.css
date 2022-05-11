@@ -72,14 +72,14 @@ table tr td{
     text-align: center;
     font-size: 24px;
 }
-#edit,#delete{
+.edit,.delete{
     width: 100%;
 }
-#edit:hover{
+.edit:hover{
     background-color: #333;
     color: #fff;
 }
-#delete:hover{
+.delete:hover{
     background-color: #333;
     color: #fff;
 }
