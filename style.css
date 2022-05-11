@@ -148,3 +148,9 @@ main{
     background-color: grey;
 }
 
+.studentCity{
+    cursor: pointer;
+}
+.studentCity:hover{
+    background-color: grey;
+}
