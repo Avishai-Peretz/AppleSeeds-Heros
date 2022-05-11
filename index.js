@@ -281,8 +281,9 @@ function getCityForWeather() {
         );
         const data = await weather1.json();
         const allData = data.current;
+        console.log(allData.temp_c);
         alert(
-          `the weather in ${event.target.innerText} is ${allData.temperature} degrees`
+          `the weather in ${event.target.innerText} is ${allData.temp_c} degrees`
         );
       } catch (e) {
         alert(
