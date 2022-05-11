@@ -280,10 +280,11 @@ function getCityForWeather() {
           // `http://api.weatherstack.com/current?access_key=c6a38e03037a0aedff539da5dc7f6827&query=${event.target.innerText}`
         );
         const data = await weather1.json();
-        const allData = data.current;
-        console.log(allData.temp_c);
+        const currentWeather = data.current;
+        const currentPlace = data.location;
+        console.log(currentWeather.temp_c);
         alert(
-          `the weather in ${event.target.innerText} is ${allData.temp_c} degrees`
+          `the weather in ${event.target.innerText} ${currentPlace.country} is ${currentWeather.temp_c} degrees`
         );
       } catch (e) {
         alert(
