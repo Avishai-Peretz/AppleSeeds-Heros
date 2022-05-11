@@ -1,23 +1,33 @@
-const allStudents = [];
+let allStudents = [];
 
 async function initialize() {
-  const promMordi = await fetch(
+  const promMordi = fetch(
     "https://capsules-asb6.herokuapp.com/api/teacher/mordi"
   );
-  const promToam = await fetch(
+  const promToam = fetch(
     "https://capsules-asb6.herokuapp.com/api/teacher/toam"
   );
-  const mordiData = await promMordi.json();
-  const toamData = await promToam.json();
-  const data = mordiData.concat(toamData);
-  console.log(data);
+  const proms = await Promise.all([promMordi, promToam]);
+  const mordiData = proms[0].json();
+  const toamData = proms[1].json();
+  const results = await Promise.all([mordiData, toamData]);
+  const data = results[0].concat(results[1]);
+//   console.log(data);
+  const allProms = [];
   for (let student of data) {
-    const prom = await fetch(
+    const prom = fetch(
       `https://capsules-asb6.herokuapp.com/api/user/${student.id}`
     );
-    const fullData = await prom.json();
-    allStudents.push(fullData);
+    allProms.push(prom);
   }
+  const allPromsResult = await Promise.all(allProms);
+  const arrJasons = [];
+  for(let res of allPromsResult) {
+    const fullData = res.json();
+    arrJasons.push(fullData);
+  }
+  const arrJasonsResults = await Promise.all(arrJasons);
+  allStudents = [...arrJasonsResults];
   console.log(allStudents);
   createTable();
 }
@@ -32,7 +42,7 @@ function createTable() {
             <th colspan=10 class="titleStudents">Students</th>
             </tr>
             <tr>
-                <th><button>id</button></th>
+                <th>id</th>
                 <th>first name</th>
                 <th>last name</th>
                 <th>gender</th>
