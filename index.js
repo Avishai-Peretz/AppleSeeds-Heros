@@ -19,6 +19,7 @@ async function initialize() {
     allStudents.push(fullData);
   }
   console.log(allStudents);
+  deleteSpinner();
   createTable();
 }
 
@@ -76,4 +77,9 @@ function removePerson(event) {
     console.log(2);
     const row = document.querySelector(`#row${event.target.getAttribute("data-number")}`);
     row.remove();
+}
+
+function deleteSpinner() {
+  const loading = document.querySelector(".loader");
+  loading.remove();
 }
