@@ -30,13 +30,56 @@ async function initialize() {
   const arrJasonsResults = await Promise.all(arrJasons);
   allStudents = [...arrJasonsResults];
   originalStudents = [...allStudents];
-  console.log(allStudents);
+//   console.log(allStudents);
   deleteSpinner();
   createTable(allStudents);
   addEventToRestart();
+  addEventToSearch();
 }
 
 initialize();
+
+function addEventToSearch() {
+    const searchInput = document.querySelector("#mainInput");
+    searchInput.addEventListener("search", searchAll);
+}
+
+function searchAll() {
+    const searchInput = document.querySelector("#mainInput");
+    const input = searchInput.value.toLowerCase();
+    const select = document.querySelector("#mainSelect");
+    const newArr = allStudents.filter((student)=> {
+        if(select.value === "everything") {
+            for(let property in student) {
+                if(student[property].toString().includes(input)) {
+                    return true;
+                }
+            }
+        } else if(select.value === "name") {
+            if(student.lastName.includes(input) || student.firstName.includes(input)) {
+                return true;
+            }
+        } else if(select.value === "age") {
+            if(student.age.toString().includes(input)) {
+                return true;
+            }
+        } else if(select.value === "hobby") {
+            if(student.hobby.toString().toLowerCase().includes(input)) {
+                return true;
+            }
+        } else if(select.value === "city") {
+            if(student.city.toString().toLowerCase().includes(input)) {
+                return true;
+            }
+        } else if(select.value === "gender") {
+            if(student.gender.toString().includes(input)) {
+                return true;
+            }
+        } 
+        return false;
+    })
+    createTable(newArr);
+}
 
 function addEventToRestart() {
     const restart = document.querySelector("#resetBTN");
@@ -91,43 +134,43 @@ function createTable(students) {
   const ageButton = document.querySelector("#ageSort");
   ageButton.addEventListener("click", function () {
     sortTable("age");
-    createTable();
+    createTable(allStudents);
   });
   const capsuleButton = document.querySelector("#capsuleSort");
   capsuleButton.addEventListener("click", function () {
     sortTable("capsule");
-    createTable();
+    createTable(allStudents);
   });
 
   const idButton = document.querySelector("#idSort");
   idButton.addEventListener("click", function () {
     sortTable("id");
-    createTable();
+    createTable(allStudents);
   });
   const genderButton = document.querySelector("#genderSort");
   genderButton.addEventListener("click", function () {
     sortNames("gender");
-    createTable();
+    createTable(allStudents);
   });
   const firstButton = document.querySelector("#firstSort");
   firstButton.addEventListener("click", function () {
     sortNames("firstName");
-    createTable();
+    createTable(allStudents);
   });
   const lastButton = document.querySelector("#lastSort");
   lastButton.addEventListener("click", function () {
     sortNames("lastName");
-    createTable();
+    createTable(allStudents);
   });
   const hobbyButton = document.querySelector("#hobbySort");
   hobbyButton.addEventListener("click", function () {
     sortNames("hobby");
-    createTable();
+    createTable(allStudents);
   });
   const cityButton = document.querySelector("#citySort");
   cityButton.addEventListener("click", function () {
     sortNames("city");
-    createTable();
+    createTable(allStudents);
   });
 }
 
@@ -222,3 +265,4 @@ function sortNames(field) {
     }
   });
 }
+
