@@ -10,11 +10,10 @@ body{
     font-size: 10px;
     display: flex;
     flex-direction: column;
-    /* height: calc(100vh-80px); */
 }
 header {
     width: 100vw;
-    /* position: fixed; */
+    position: fixed;
 }
 header nav {
     height: 80px;
@@ -22,7 +21,10 @@ header nav {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center; 
-    border-bottom: #fff solid 1px;     
+    border-bottom: #fff solid 1px;  
+    z-index: 10;   
+    background-color: grey;
+
 }
 
 #mainInput {
@@ -47,6 +49,37 @@ header nav {
 }
 
 #resetBTN:hover {
+    background-color: #333;
+    color: #fff;
+}
+.table-container{
+    margin-top:80px; 
+}
+table{
+    width: 100%;
+}
+table tr th{
+    border: solid black 1px;
+    text-align:center;
+    
+}
+table tr td{
+    border: solid black 1px;
+    text-align: center
+}
+.titleStudents{
+    width: fit-content;
+    text-align: center;
+    font-size: 24px;
+}
+#edit,#delete{
+    width: 100%;
+}
+#edit:hover{
+    background-color: #333;
+    color: #fff;
+}
+#delete:hover{
     background-color: #333;
     color: #fff;
 }
