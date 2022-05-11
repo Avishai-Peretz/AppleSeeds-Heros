@@ -66,12 +66,14 @@ function createTable() {
             <td>${student.capsule}</td>
             <td>${student.city}</td>
             <td>${student.hobby}</td>
-            <td><button class=edit>Edit</button></td>
+            <td><button class=edit data-number=${student.id}>Edit</button></td>
             <td><button class=delete data-number=${student.id}>Delete</button></td>
         </tr>`;
   }
   output += `</table>`;
   tableContainer.innerHTML = output;
+  const editBtn = document.querySelectorAll(".edit");
+  addEventToButtons(editBtn);
   const deleteBtn = document.querySelectorAll(".delete");
   addEventToButtons(deleteBtn);
 
@@ -119,10 +121,35 @@ function createTable() {
 }
 
 function addEventToButtons(buttons) {
-  console.log(buttons);
   buttons.forEach((button) => {
-    button.addEventListener("click", removePerson);
+
+      if(button.classList.contains("delete")) {
+        button.addEventListener("click", removePerson);
+      }
+      if(button.classList.contains("edit")) {
+        button.addEventListener("click", editPerson);
+      }
   });
+}
+
+function editPerson(event) {
+    const row = document.querySelector(`#row${event.target.getAttribute("data-number")}`);
+    const cells = row.querySelectorAll("td");
+    for(let i=0; i<cells.length; i++) {
+        console.log(cells[i]);
+    }
+    // let output = `
+    // <td><input value = 1102></td>
+    // <td><input value =  נור></td>
+    // <td><input value = טאה></td>
+    // <td><input value = female></td>
+    // <td><input value = 21></td>
+    // <td><input value = 1></td>
+    // <td><input value = Jerusalem></td>
+    // <td><input value = digital marketing></td>
+    // <td><button class="edit" data-number="1102">Edit</button></td>
+    // <td><button class="delete" data-number="1102">Delete</button></td>`;
+    // row.innerHTML = output;
 }
 
 function removePerson(event) {
