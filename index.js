@@ -38,21 +38,44 @@ async function initialize() {
 }
 
 initialize();
-const searchInput = document.querySelector("#mainInput");
+
 function addEventToSearch() {
+    const searchInput = document.querySelector("#mainInput");
     searchInput.addEventListener("search", searchAll);
 }
 
 function searchAll() {
-    // console.log(searchInput.value);
     const searchInput = document.querySelector("#mainInput");
-    console.log(11);
+    const input = searchInput.value.toLowerCase();
+    const select = document.querySelector("#mainSelect");
     const newArr = allStudents.filter((student)=> {
-        for(let property in student) {
-            if(student[property].toString().includes(searchInput.value)) {
+        if(select.value === "everything") {
+            for(let property in student) {
+                if(student[property].toString().includes(input)) {
+                    return true;
+                }
+            }
+        } else if(select.value === "name") {
+            if(student.lastName.includes(input) || student.firstName.includes(input)) {
                 return true;
             }
-        }
+        } else if(select.value === "age") {
+            if(student.age.toString().includes(input)) {
+                return true;
+            }
+        } else if(select.value === "hobby") {
+            if(student.hobby.toString().toLowerCase().includes(input)) {
+                return true;
+            }
+        } else if(select.value === "city") {
+            if(student.city.toString().toLowerCase().includes(input)) {
+                return true;
+            }
+        } else if(select.value === "gender") {
+            if(student.gender.toString().includes(input)) {
+                return true;
+            }
+        } 
         return false;
     })
     createTable(newArr);
