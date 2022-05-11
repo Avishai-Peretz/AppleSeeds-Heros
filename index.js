@@ -19,6 +19,7 @@ async function initialize() {
     allStudents.push(fullData);
   }
   console.log(allStudents);
+  deleteSpinner();
   createTable();
 }
 
@@ -60,4 +61,9 @@ function createTable() {
   }
   output += `</table>`;
   tableContainer.innerHTML = output;
+}
+
+function deleteSpinner() {
+  const loading = document.querySelector(".loader");
+  loading.remove();
 }
