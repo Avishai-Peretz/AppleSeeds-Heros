@@ -39,7 +39,7 @@ function createTable() {
   const tableContainer = document.querySelector(".table-container");
   tableContainer.innerHTML = "";
   let output = `
-        <table>
+        <table  class= tableTable>
             <tr>
             <th colspan=10 class="titleStudents">Students</th>
             </tr>
@@ -122,34 +122,35 @@ function createTable() {
 
 function addEventToButtons(buttons) {
   buttons.forEach((button) => {
-
-      if(button.classList.contains("delete")) {
-        button.addEventListener("click", removePerson);
-      }
-      if(button.classList.contains("edit")) {
-        button.addEventListener("click", editPerson);
-      }
+    if (button.classList.contains("delete")) {
+      button.addEventListener("click", removePerson);
+    }
+    if (button.classList.contains("edit")) {
+      button.addEventListener("click", editPerson);
+    }
   });
 }
 
 function editPerson(event) {
-    const row = document.querySelector(`#row${event.target.getAttribute("data-number")}`);
-    const cells = row.querySelectorAll("td");
-    for(let i=0; i<cells.length; i++) {
-        console.log(cells[i]);
-    }
-    // let output = `
-    // <td><input value = 1102></td>
-    // <td><input value =  נור></td>
-    // <td><input value = טאה></td>
-    // <td><input value = female></td>
-    // <td><input value = 21></td>
-    // <td><input value = 1></td>
-    // <td><input value = Jerusalem></td>
-    // <td><input value = digital marketing></td>
-    // <td><button class="edit" data-number="1102">Edit</button></td>
-    // <td><button class="delete" data-number="1102">Delete</button></td>`;
-    // row.innerHTML = output;
+  const row = document.querySelector(
+    `#row${event.target.getAttribute("data-number")}`
+  );
+  const cells = row.querySelectorAll("td");
+  for (let i = 0; i < cells.length; i++) {
+    console.log(cells[i]);
+  }
+  // let output = `
+  // <td><input value = 1102></td>
+  // <td><input value =  נור></td>
+  // <td><input value = טאה></td>
+  // <td><input value = female></td>
+  // <td><input value = 21></td>
+  // <td><input value = 1></td>
+  // <td><input value = Jerusalem></td>
+  // <td><input value = digital marketing></td>
+  // <td><button class="edit" data-number="1102">Edit</button></td>
+  // <td><button class="delete" data-number="1102">Delete</button></td>`;
+  // row.innerHTML = output;
 }
 
 function removePerson(event) {
@@ -174,6 +175,8 @@ function sortNames(field) {
   allStudents.sort((student1, student2) => {
     if (student1[field] > student2[field]) {
       return 1;
+    } else if (student1[field] === student2[field]) {
+      return 0;
     } else {
       return -1;
     }
