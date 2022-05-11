@@ -30,7 +30,7 @@ async function initialize() {
   const arrJasonsResults = await Promise.all(arrJasons);
   allStudents = [...arrJasonsResults];
   originalStudents = [...allStudents];
-//   console.log(allStudents);
+  //   console.log(allStudents);
   deleteSpinner();
   createTable(allStudents);
   addEventToRestart();
@@ -40,53 +40,56 @@ async function initialize() {
 initialize();
 
 function addEventToSearch() {
-    const searchInput = document.querySelector("#mainInput");
-    searchInput.addEventListener("search", searchAll);
+  const searchInput = document.querySelector("#mainInput");
+  searchInput.addEventListener("search", searchAll);
 }
 
 function searchAll() {
-    const searchInput = document.querySelector("#mainInput");
-    const input = searchInput.value.toLowerCase();
-    const select = document.querySelector("#mainSelect");
-    const newArr = allStudents.filter((student)=> {
-        if(select.value === "everything") {
-            for(let property in student) {
-                if(student[property].toString().includes(input)) {
-                    return true;
-                }
-            }
-        } else if(select.value === "name") {
-            if(student.lastName.includes(input) || student.firstName.includes(input)) {
-                return true;
-            }
-        } else if(select.value === "age") {
-            if(student.age.toString().includes(input)) {
-                return true;
-            }
-        } else if(select.value === "hobby") {
-            if(student.hobby.toString().toLowerCase().includes(input)) {
-                return true;
-            }
-        } else if(select.value === "city") {
-            if(student.city.toString().toLowerCase().includes(input)) {
-                return true;
-            }
-        } else if(select.value === "gender") {
-            if(student.gender.toString().includes(input)) {
-                return true;
-            }
-        } 
-        return false;
-    })
-    createTable(newArr);
+  const searchInput = document.querySelector("#mainInput");
+  const input = searchInput.value.toLowerCase();
+  const select = document.querySelector("#mainSelect");
+  const newArr = allStudents.filter((student) => {
+    if (select.value === "everything") {
+      for (let property in student) {
+        if (student[property].toString().includes(input)) {
+          return true;
+        }
+      }
+    } else if (select.value === "name") {
+      if (
+        student.lastName.includes(input) ||
+        student.firstName.includes(input)
+      ) {
+        return true;
+      }
+    } else if (select.value === "age") {
+      if (student.age.toString().includes(input)) {
+        return true;
+      }
+    } else if (select.value === "hobby") {
+      if (student.hobby.toString().toLowerCase().includes(input)) {
+        return true;
+      }
+    } else if (select.value === "city") {
+      if (student.city.toString().toLowerCase().includes(input)) {
+        return true;
+      }
+    } else if (select.value === "gender") {
+      if (student.gender.toString().includes(input)) {
+        return true;
+      }
+    }
+    return false;
+  });
+  createTable(newArr);
 }
 
 function addEventToRestart() {
-    const restart = document.querySelector("#resetBTN");
-    restart.addEventListener("click", ()=> {
-        createTable(originalStudents);
-        allStudents = [...originalStudents];
-    })
+  const restart = document.querySelector("#resetBTN");
+  restart.addEventListener("click", () => {
+    createTable(originalStudents);
+    allStudents = [...originalStudents];
+  });
 }
 
 function createTable(students) {
@@ -118,7 +121,7 @@ function createTable(students) {
             <td>${student.gender}</td>
             <td>${student.age}</td>
             <td>${student.capsule}</td>
-            <td>${student.city}</td>
+            <td class=studentCity>${student.city}</td>
             <td>${student.hobby}</td>
             <td><button class=edit data-number=${student.id}>Edit</button></td>
             <td><button class=delete data-number=${student.id}>Delete</button></td>
@@ -172,6 +175,7 @@ function createTable(students) {
     sortNames("city");
     createTable(allStudents);
   });
+  getCityForWeather();
 }
 
 function addEventToButtons(buttons) {
@@ -265,4 +269,25 @@ function sortNames(field) {
     }
   });
 }
-
+function getCityForWeather() {
+  const studentCityMain = [...document.querySelectorAll(".studentCity")];
+  console.log(studentCityMain);
+  studentCityMain.forEach((city) => {
+    city.addEventListener("click", async (event) => {
+      try {
+        const weather1 = await fetch(
+          `http://api.weatherstack.com/current?access_key=c6a38e03037a0aedff539da5dc7f6827&query=${event.target.innerText}`
+        );
+        const data = await weather1.json();
+        const allData = data.current;
+        alert(
+          `the weather in ${event.target.innerText} is ${allData.temperature} degrees`
+        );
+      } catch (e) {
+        alert(
+          "city is not supported, please write nearby city name in english to get the weather"
+        );
+      }
+    });
+  });
+}
