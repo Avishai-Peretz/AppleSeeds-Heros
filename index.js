@@ -32,7 +32,7 @@ function createTable() {
             <th colspan=10 class="titleStudents">Students</th>
             </tr>
             <tr>
-                <th>id</th>
+                <th><button>id</button></th>
                 <th>first name</th>
                 <th>last name</th>
                 <th>gender</th>
@@ -45,7 +45,7 @@ function createTable() {
             </tr>`;
   for (let student of allStudents) {
     output += `
-        <tr>
+        <tr id=row${student.id}>
             <td>${student.id}</td>
             <td>${student.firstName}</td>
             <td>${student.lastName}</td>
@@ -54,10 +54,26 @@ function createTable() {
             <td>${student.capsule}</td>
             <td>${student.city}</td>
             <td>${student.hobby}</td>
-            <td><button id=edit>Edit</button></td>
-            <td><button id=delete>Delete</button></td>
+            <td><button class=edit>Edit</button></td>
+            <td><button class=delete data-number=${student.id}>Delete</button></td>
         </tr>`;
   }
   output += `</table>`;
   tableContainer.innerHTML = output;
+  const deleteBtn = document.querySelectorAll(".delete");
+  addEventToButtons(deleteBtn);
+}
+
+function addEventToButtons(buttons) {
+    console.log(buttons);
+    buttons.forEach(button => {
+        button.addEventListener("click", removePerson);
+        console.log(3);
+    });
+}
+
+function removePerson(event) {
+    console.log(2);
+    const row = document.querySelector(`#row${event.target.getAttribute("data-number")}`);
+    row.remove();
 }
