@@ -98,12 +98,12 @@ function createTable() {
   });
   const firstButton = document.querySelector("#firstSort");
   firstButton.addEventListener("click", function () {
-    sortNames("first");
+    sortNames("firstName");
     createTable();
   });
   const lastButton = document.querySelector("#lastSort");
   lastButton.addEventListener("click", function () {
-    sortNames("last");
+    sortNames("lastName");
     createTable();
   });
   const hobbyButton = document.querySelector("#hobbySort");
@@ -146,9 +146,9 @@ function sortTable(field) {
 function sortNames(field) {
   allStudents.sort((student1, student2) => {
     if (student1[field] > student2[field]) {
-      return -1;
-    } else {
       return 1;
+    } else {
+      return -1;
     }
   });
 }
