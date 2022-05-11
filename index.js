@@ -95,3 +95,4 @@ function deleteSpinner() {
   const loading = document.querySelector(".loader");
   loading.remove();
 }
+
