@@ -57,7 +57,7 @@ function createTable() {
             </tr>`;
   for (let student of allStudents) {
     output += `
-        <tr id=row${student.id}>
+        <tr id=row${student.id} data-number=${student.id}>
             <td>${student.id}</td>
             <td>${student.firstName}</td>
             <td>${student.lastName}</td>
@@ -134,22 +134,47 @@ function addEventToButtons(buttons) {
 
 function editPerson(event) {
     const row = document.querySelector(`#row${event.target.getAttribute("data-number")}`);
+    const originalHtml = row.innerHTML;
     const cells = row.querySelectorAll("td");
+    let output = ``;
     for(let i=0; i<cells.length; i++) {
-        console.log(cells[i]);
+        if(i< cells.length-2) {
+            output += `<td><input value = `
+            output += `"${cells[i].innerHTML}"`;
+            output += `></td>`;
+        } else if(i === cells.length-2){
+            output += `<td><button class="cancel">Cancel</button></td>`
+        } else {
+            output += `<td><button class="confirm">Confirm</button></td>`
+        }
     }
-    // let output = `
-    // <td><input value = 1102></td>
-    // <td><input value =  נור></td>
-    // <td><input value = טאה></td>
-    // <td><input value = female></td>
-    // <td><input value = 21></td>
-    // <td><input value = 1></td>
-    // <td><input value = Jerusalem></td>
-    // <td><input value = digital marketing></td>
-    // <td><button class="edit" data-number="1102">Edit</button></td>
-    // <td><button class="delete" data-number="1102">Delete</button></td>`;
-    // row.innerHTML = output;
+    row.innerHTML = output;
+    const cancelBtn = row.querySelector(".cancel");
+    cancelBtn.addEventListener("click", () => {
+        row.innerHTML = originalHtml;
+        const editBtn = row.querySelectorAll(".edit");
+        addEventToButtons(editBtn);
+        const deleteBtn = row.querySelectorAll (".delete");
+        addEventToButtons(deleteBtn);
+    })
+
+    const confirmBtn = row.querySelector(".confirm");
+    confirmBtn.addEventListener("click", ()=> {
+        const inputs = row.querySelectorAll("input");
+        let output2 = ``;
+        for(let i=0; i<inputs.length; i++) {
+            output2 += `<td>`
+            output2 += inputs[i].value;
+            output2 += `</td>`;
+        }
+        output2 += `<td><button class=edit data-number=${row.getAttribute("data-number")}>Edit</button></td>`
+        output2 += `<td><button class=delete data-number=${row.getAttribute("data-number")}>Delete</button></td>`
+        row.innerHTML = output2;
+        const editBtn = row.querySelectorAll(".edit");
+        addEventToButtons(editBtn);
+        const deleteBtn = row.querySelectorAll (".delete");
+        addEventToButtons(deleteBtn);
+    })
 }
 
 function removePerson(event) {
