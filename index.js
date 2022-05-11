@@ -29,6 +29,7 @@ async function initialize() {
   const arrJasonsResults = await Promise.all(arrJasons);
   allStudents = [...arrJasonsResults];
   console.log(allStudents);
+  deleteSpinner();
   createTable();
 }
 
@@ -75,15 +76,22 @@ function createTable() {
 }
 
 function addEventToButtons(buttons) {
-    console.log(buttons);
-    buttons.forEach(button => {
-        button.addEventListener("click", removePerson);
-        console.log(3);
-    });
+  console.log(buttons);
+  buttons.forEach((button) => {
+    button.addEventListener("click", removePerson);
+    console.log(3);
+  });
 }
 
 function removePerson(event) {
-    console.log(2);
-    const row = document.querySelector(`#row${event.target.getAttribute("data-number")}`);
-    row.remove();
+  console.log(2);
+  const row = document.querySelector(
+    `#row${event.target.getAttribute("data-number")}`
+  );
+  row.remove();
+}
+
+function deleteSpinner() {
+  const loading = document.querySelector(".loader");
+  loading.remove();
 }

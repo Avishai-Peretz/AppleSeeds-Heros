@@ -6,10 +6,12 @@
 }
 
 body{
-    background-color: grey;
+    background-color: rgb(179, 177, 177);
     font-size: 10px;
     display: flex;
     flex-direction: column;
+    position: relative;
+    min-height: 90vh;
 }
 header {
     width: 100vw;
@@ -54,6 +56,7 @@ header nav {
 }
 .table-container{
     margin-top:80px; 
+    width:100%;
 }
 table{
     width: 100%;
@@ -65,7 +68,8 @@ table tr th{
 }
 table tr td{
     border: solid black 1px;
-    text-align: center
+    text-align: center;
+    font-size: 18px;
 }
 .titleStudents{
     width: fit-content;
@@ -82,4 +86,58 @@ table tr td{
 .delete:hover{
     background-color: #333;
     color: #fff;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    width: 100%;
+}
+.spinner {
+    margin-top: 20%;
+}
+.loader {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    }
+    .loader span{
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: auto;
+    }
+    #balls_container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+    .ball {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #fff;
+    animation: bounce .5s alternate
+    infinite;
+    }
+    .ball:nth-child(2){
+    animation-delay:.16s;
+    }
+    .ball:nth-child(3){
+    animation-delay: .32s;
+    }
+    @keyframes bounce {
+    from {
+    transform: scaleX(1.25);
+    }
+    to{
+    transform:
+    translateY(-50px) scalex(1);
+    }
 }
