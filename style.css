@@ -10,11 +10,11 @@ body{
     font-size: 10px;
     display: flex;
     flex-direction: column;
-
+    /* height: calc(100vh-80px); */
 }
 header {
     width: 100vw;
-    position: fixed;
+    /* position: fixed; */
 }
 header nav {
     height: 80px;
