@@ -1,6 +1,6 @@
 
 import { getCityForWeather } from "./getWeather.js"
-import { originalStudents } from "./index.js";
+import { originalStudents } from "../index.js";
 import { studentsArr } from "./fetchApi.js"
 export let allStudents = studentsArr;
 

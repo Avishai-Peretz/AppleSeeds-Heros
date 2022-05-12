@@ -1,5 +1,5 @@
-import { fetchApi, addToLocalStorage } from "./fetchApi.js"
-import { createTable, addEventToSearch, addEventToRestart,  allStudents } from "./createTable.js";
+import { fetchApi, addToLocalStorage } from "./Js/fetchApi.js"
+import { createTable, addEventToSearch, addEventToRestart,  allStudents } from "./Js/createTable.js";
 
 export let originalStudents = [];
 async function initialize() {
