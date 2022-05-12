@@ -11,15 +11,17 @@
     <header>
         <nav>
             <img src="./Appleseeds_LOGO_3_Hebrew_3x (1).png" alt="">
-            <input id="mainInput" type="search" placeholder="Search Student" incremental>
-            <select id="mainSelect" name="Type" id="searchFilter">
-                <option value="everything" selected>Everything</option>
-                <option value="name">Name</option>
-                <option value="age">Age</option>
-                <option value="hobby">Hobby</option>
-                <option value="city">City</option>
-                <option value="gender">Gender</option>
-            </select>
+            <div id="search_container">
+                <input id="mainInput" type="search" placeholder="Search Student" incremental>
+                <select id="mainSelect" name="Type" id="searchFilter">
+                    <option value="everything" selected>Everything</option>
+                    <option value="name">Name</option>
+                    <option value="age">Age</option>
+                    <option value="hobby">Hobby</option>
+                    <option value="city">City</option>
+                    <option value="gender">Gender</option>
+                </select>               
+            </div>
             <button id="resetBTN">Restart</button>
         </nav>
     </header>
@@ -39,6 +41,6 @@
         </div>
     </main>
 
-    <script src="./index.js"></script>
+    <script src="./index.js" type="module"></script>
 </body>
 </html>
