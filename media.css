@@ -1,0 +1,38 @@
+@media screen and (max-width: 800px) {
+    
+    header nav {
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center; 
+        border-bottom: #fff solid 1px;   
+        background-color: aquamarine;
+    }
+    .weather_window {
+        position: absolute;
+        font-size: 10px;
+        width: 10rem;
+        height: 12rem;
+        right: 5rem;
+        top: -5rem;
+        border-radius: 1rem;
+        box-shadow: 5px 10px #888888;
+        z-index: 1;
+    }
+}
+@media screen and (max-width: 375px) {
+    body {
+        font-size: 5px;
+        position: relative;
+    }
+    header, main {
+        display: none;
+    }
+    .wide-screen { 
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        background: url(./images/unnamedasd.png) center center/cover no-repeat;
+    }
+  }
