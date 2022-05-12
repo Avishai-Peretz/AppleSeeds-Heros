@@ -12,7 +12,7 @@ export function getWeatherWindow(event, city, currentWeather, currentPlace) {
             location.innerText = `${event.target.innerText}`;
       const localTime = document.createElement('div');
             localTime.setAttribute('class', 'local-time');
-      localTime.innerText = `Last measure: <br> ${currentPlace.localtime}`;
+      localTime.innerHTML = `Last measure: <br> ${currentPlace.localtime}`;
       weatherWindow.appendChild(degreesCelsius);
       weatherWindow.appendChild(location);
       weatherWindow.appendChild(localTime);

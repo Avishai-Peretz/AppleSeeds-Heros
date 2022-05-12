@@ -167,7 +167,7 @@ main{
 }
 .weather_window {
     position: absolute;
-    background: url(./17879942-good-weather-background-blue-sky-with-clouds.webp) top center/cover no-repeat;
+    background: url(./images/17879942-good-weather-background-blue-sky-with-clouds.webp) top center/cover no-repeat;
     text-align: center;
     width: 250px;
     height: 150px;
